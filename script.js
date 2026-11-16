@@ -4,7 +4,7 @@
 const API_KEY = '06fd97f53e251cde0262f6cc3e169a06';
 
 // GNews Top Headlines endpoint
-const API_URL = `https://gnews.io/api/v4/top-headlines?category=general&lang=en&max=10&apikey=${API_KEY}`;
+const API_URL = `https://api.allorigins.win/get?url=${encodeURIComponent('https://gnews.io/api/v4/top-headlines?category=general&lang=en&max=10&apikey=' + API_KEY)}`;
 
 // DOM Elements
 const newsContainer = document.getElementById('news-container');
@@ -28,7 +28,8 @@ async function fetchNews() {
         }
 
         // Parse the JSON response
-        const data = await response.json();
+const rawData = await response.json();
+const data = JSON.parse(rawData.contents);
 
         // Log the raw data to console for debugging
         console.log('API Response:', data);
